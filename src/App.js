@@ -1,5 +1,32 @@
+import { useState } from 'react'
+import Header from "./components/Header"
+import FeedbackList from './components/FeedbackList'
+import FeedbackData from './data/FeedbackData'
+import Card from './components/shared/Card'
+
 function App () {
-  return <h1>Hello from App component</h1>
+
+  const [feedback, setFeedback] = useState
+  (FeedbackData)
+
+  const deleteFeedback = (id) => {
+    if(window.confirm('Are you sure?')) {
+      setFeedback(feedback.filter((item) => item.id !== id))
+    }
+  }
+
+  return (
+    <>
+      <Header text={true} />
+      <div className="container">
+        <FeedbackList 
+          feedback={feedback} 
+          handleDelete={deleteFeedback}
+        />
+      </div>
+    </>
+  )
+
 }
 
 export default App
